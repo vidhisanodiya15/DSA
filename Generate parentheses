@@ -1,0 +1,37 @@
+class Solution {
+public:
+
+    void function(int open, int close , string &temp, int &n, vector<string> &ans){
+        //base condition
+        if(open+close == 2*n){
+            ans.push_back(temp);
+            return ;
+        }
+
+
+        //take(
+        if(open<n){
+            temp.push_back('(');
+            open+=1;
+            function(open,close, temp,n,ans);
+            temp.pop_back();
+            open-=1;
+        }
+
+        //take )
+        if(close <open){
+            temp.push_back(')');
+            close+=1;
+            function(open,close,temp,n,ans);
+            temp.pop_back();
+            close-=1;
+
+        }
+    }
+    vector<string> generateParenthesis(int n) {
+        vector<string> ans;
+        string temp= "";
+        function(0, 0,temp, n, ans);
+        return ans;
+    }
+};
