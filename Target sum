@@ -1,0 +1,29 @@
+class Solution {
+public:
+
+    void function(int idx,int sum, vector<int> &nums,int &target,int &count){
+        //base condition
+        
+        if(idx == nums.size()){
+            if(sum == target) count++;
+            return ;
+        }
+
+        //take with + sign
+        sum+=nums[idx];
+        function(idx+1, sum, nums,target,count);
+        sum-= nums[idx];
+
+        //take with -sign
+        sum-=nums[idx];
+        function(idx+1, sum, nums, target,count);
+        sum+= nums[idx];
+    }
+    int findTargetSumWays(vector<int>& nums, int target) {
+        int count =0;
+        function(0,0,nums,target,count);
+        return count ;
+
+        
+    }
+};
